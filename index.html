@@ -30,6 +30,7 @@ body.clients main ul.cl{opacity:1;visibility:visible;transition:opacity .25s eas
 .nav-clients path,.m-clients path{transition:fill .25s}body.clients .nav-clients path,body.clients .m-clients path{fill:#9A9A9A}
 @media (prefers-reduced-motion:reduce){main figure,main ul.cl{transition:none!important}}
 .cta{display:flex;align-items:center;justify-content:center;gap:36px}
+@media (min-width:601px){ul.cl li svg[role=img]{height:7.57px!important}ul.cl li svg[aria-hidden]{width:1.86px!important;height:1.75px!important}ul.cl li{height:25.7px!important;gap:25.7px!important}}
 </style>
 </head>
 <body>
@@ -58,7 +59,10 @@ body.clients main ul.cl{opacity:1;visibility:visible;transition:opacity .25s eas
 <script>
 (function(){var b=document.body;function s(){b.classList.toggle('clients',location.hash==='#clients')}
 window.addEventListener('hashchange',s);s();
-document.querySelector('a[aria-label=Reflections]').addEventListener('click',function(e){if(location.hash){e.preventDefault();history.pushState('',document.title,location.pathname);s()}});})();
+function home(e){if(location.hash){if(e)e.preventDefault();history.pushState('',document.title,location.pathname);s()}}
+document.querySelector('a[aria-label=Reflections]').addEventListener('click',home);
+document.querySelectorAll('.nav-clients,.m-clients').forEach(function(a){a.addEventListener('click',function(e){if(b.classList.contains('clients'))home(e)})});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&b.classList.contains('clients'))home()});})();
 </script>
 </body>
 </html>
